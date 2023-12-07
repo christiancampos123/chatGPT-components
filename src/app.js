@@ -1,1 +1,3 @@
-import './inputChat.js'
+import './inputChat.js';
+import './optionsChat.js';
+import './conversation.js';
