@@ -130,9 +130,9 @@ class InputChat extends HTMLElement {
             }
 
             .send-button.dissabled {
-                    pointer-events: none;
-                    opacity: 0.5;
-                    cursor: not-allowed;
+                pointer-events: none;
+                opacity: 0.5;
+                cursor: not-allowed;
             }
         </style>
     
@@ -164,9 +164,7 @@ class InputChat extends HTMLElement {
         let textArea = this.shadow.querySelector(".form-element");
         let button = this.shadow.querySelector(".send-button");
 
-        // Agrega un event listener al elemento padre
         textArea.addEventListener('input', (event) => {
-            // Verifica si el evento proviene de un elemento de tipo input
             if (event.target.tagName === 'TEXTAREA') {
                 console.log(event.target.value);
 
@@ -177,7 +175,6 @@ class InputChat extends HTMLElement {
                 }
             }
         })
-
 
     }
 
