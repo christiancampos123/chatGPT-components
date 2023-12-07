@@ -26,50 +26,50 @@ class UserButton extends HTMLElement {
 
 
                 .user{
-  bottom: 0;
-  cursor: pointer;
-  display: flex;
-  gap: 0.5rem;
-  padding: 1rem;
-  position: absolute;
-}
+                bottom: 0;
+                cursor: pointer;
+                display: flex;
+                gap: 0.5rem;
+                padding: 1rem;
+                position: absolute;
+                }
 
-.user-logo{
-  align-items: center;
-  border-radius: 50%;
-  display: flex;
-  height: 2rem;
-  justify-content: center;
-  overflow: hidden;
-  width: 2rem;
-}
+                .user-logo{
+                align-items: center;
+                border-radius: 50%;
+                display: flex;
+                height: 2rem;
+                justify-content: center;
+                overflow: hidden;
+                width: 2rem;
+                }
 
-.user-logo img{
-  width: 100%;
-}
+                .user-logo img{
+                width: 100%;
+                }
 
-.user-name{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
+                .user-name{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                }
 
-.user-name h3{
-  color: hsl(0, 0%, 100%);
-  font-family: 'SoehneBuch', sans-serif;
-  font-size: 0.9rem;
-  margin: 0;
-  overflow: hidden;
-  white-space: nowrap;
-}
+                .user-name h3{
+                color: hsl(0, 0%, 100%);
+                font-family: 'SoehneBuch', sans-serif;
+                font-size: 0.9rem;
+                margin: 0;
+                overflow: hidden;
+                white-space: nowrap;
+                }
 
-.user-interaction{
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  padding: 1.5rem 0;
-  width: 45%;
-}
+                .user-interaction{
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1.5rem 0;
+                width: 45%;
+                }
             </style>
     
             <section class="user">
@@ -81,21 +81,6 @@ class UserButton extends HTMLElement {
             </div>
             </section>
             `
-
-        let textArea = this.shadow.querySelector(".form-element");
-        let button = this.shadow.querySelector(".send-button");
-
-        textArea.addEventListener('input', (event) => {
-            if (event.target.tagName === 'TEXTAREA') {
-
-
-                if (event.target.value == "" || event.target.value == null) {
-                    button.classList.add("dissabled");
-                } else {
-                    button.classList.remove("dissabled");
-                }
-            }
-        })
 
     }
 }
