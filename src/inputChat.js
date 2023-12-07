@@ -24,13 +24,7 @@ class InputChat extends HTMLElement {
                 src: url('/fonts/soehne-buch.woff2') format('woff2');
             }
 
-            .user-interaction {
-                display: flex;
-                flex-direction: column;
-                gap: 1rem;
-                padding: 1.5rem 0;
-                width: 45%;
-            }
+
 
             .message-input .attach-button button {
                 background-color: hsl(0, 0%, 100%, 0);
