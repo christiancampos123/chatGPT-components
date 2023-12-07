@@ -29,7 +29,7 @@ class Conversation extends HTMLElement {
                     display: flex;
                     flex-direction: column;
                     justify-content: center;
-                    min-height: 75vh;
+                    min-height: 74vh;
                     }
 
                     .welcome{
