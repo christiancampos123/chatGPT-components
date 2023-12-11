@@ -21,9 +21,15 @@
 
 <body>
     <aside>
-        <new-chat-component></new-chat-component>
+        <aside-component>
+            <new-chat-component slot="chat"></new-chat-component>
+            <history-component slot="history"></history-component>
+            <user-button-component slot="user"></user-button-component>
+        </aside-component>
+        
+        <!-- <new-chat-component></new-chat-component>
         <history-component></history-component>
-        <user-button-component></user-button-component>
+        <user-button-component></user-button-component> -->
     </aside>
     <main>
         <conversation-component></conversation-component>

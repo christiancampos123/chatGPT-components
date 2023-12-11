@@ -11,11 +11,7 @@ body{
   min-height: 100vh;
 }
 
-aside{
-  background-color: hsl(0, 0%, 0%);
-  max-width: 235px;
-  min-width: 235px;
-}
+
 
 main{
   align-items: center;

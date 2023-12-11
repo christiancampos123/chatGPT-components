@@ -1,20 +1,23 @@
 class NewChat extends HTMLElement {
 
-    constructor() {
-        super()
-        this.shadow = this.attachShadow({ mode: 'open' })
-    }
+  constructor() {
+    super()
+    this.shadow = this.attachShadow({ mode: 'open' })
+  }
 
-    connectedCallback() {
+  connectedCallback() {
+    document.addEventListener('aside-change', (event) => {
+      this.change();
+    });
 
-        this.render()
-    }
+    this.render()
+  }
 
-    render() {
+  render() {
 
-        this.shadow.innerHTML =
-            /*html*/
-            `
+    this.shadow.innerHTML =
+      /*html*/
+      `
             <style>
 
                 @font-face {
@@ -25,96 +28,112 @@ class NewChat extends HTMLElement {
                 }
 
                 .new-conversations{
-  padding: 1rem;
-}
+                  padding: 1rem;
+                }
 
-.new-conversation{
-  border: 1px solid hsla(210, 3%, 13%, 0);
-  border-radius: 0.3rem;
-  display: flex;
-  gap: 0.5rem;
-  padding: 0.3rem;
-}
+              .new-conversation{
+                border: 1px solid hsla(210, 3%, 13%, 0);
+                border-radius: 0.3rem;
+                display: flex;
+                gap: 0.5rem;
+                padding: 0.3rem;
+              }
 
-.new-conversation:hover{
-  background-color: hsl(220, 4%, 13%);
-  border: 1px solid hsla(210, 3%, 13%, 0.50);
-  cursor: pointer;
-}
+              .new-conversation:hover{
+                background-color: hsl(220, 4%, 13%);
+                border: 1px solid hsla(210, 3%, 13%, 0.50);
+                cursor: pointer;
+              }
 
-.new-conversation-model-icon{
-  align-items: center;
-  background-color: hsl(0, 0%, 100%);
-  border-radius: 50%;
-  display: flex;
-  height: 1.5rem;
-  justify-content: center;
-  overflow: hidden;
-  width: 1.5rem;
-}
+              .new-conversation-model-icon{
+                align-items: center;
+                background-color: hsl(0, 0%, 100%);
+                border-radius: 50%;
+                display: flex;
+                height: 1.5rem;
+                justify-content: center;
+                overflow: hidden;
+                width: 1.5rem;
+              }
 
-.new-conversation-model-icon svg{
-  width: 1rem;
-}
+              .new-conversation-model-icon svg{
+                width: 1rem;
+              }
 
-.new-conversation-model-name{
-  align-self: center;
-  flex: 1;
-}
+              .new-conversation-model-name{
+                align-self: center;
+                flex: 1;
+              }
 
-.new-conversation-model-name span{
-  color: hsl(0, 0%, 100%);
-  font-family: 'SoehneBuch', sans-serif; 
-  font-size: 0.75rem;
-}
+              .new-conversation-model-name span{
+                color: hsl(0, 0%, 100%);
+                font-family: 'SoehneBuch', sans-serif; 
+                font-size: 0.75rem;
+              }
 
-.new-conversation-model-start{
-  align-self: center;
-  display: inline-block;
-  position: relative;
-}
+              .new-conversation-model-start{
+                align-self: center;
+                display: inline-block;
+                position: relative;
+              }
 
-.new-conversation-model-start svg{
-  width: 1rem;
-}
+              .new-conversation-model-start svg{
+                width: 1rem;
+              }
 
-.new-conversation-model-start svg path{
-  fill: grey;
-}
+              .new-conversation-model-start svg path{
+                fill: grey;
+              }
 
-.new-conversation-model-start .tooltiptext {
-  background-color: black;
-  border-radius: 0.5rem;
-  color: #fff;
-  font-family: 'SoehneBuch', sans-serif;
-  font-size: 0.8rem;
-  margin-top: -0.5rem;
-  margin-left: 3rem;
-  opacity: 0;
-  padding: 0.5rem 0;
-  pointer-events: none; 
-  position: absolute;
-  text-align: center;
-  transition: opacity 0.3s;
-  visibility: hidden;
-  width: 100px;
-  z-index: 1001;
-}
+              .new-conversation-model-start .tooltiptext {
+                background-color: black;
+                border-radius: 0.5rem;
+                color: #fff;
+                font-family: 'SoehneBuch', sans-serif;
+                font-size: 0.8rem;
+                margin-top: -0.5rem;
+                margin-left: 3rem;
+                opacity: 0;
+                padding: 0.5rem 0;
+                pointer-events: none; 
+                position: absolute;
+                text-align: center;
+                transition: opacity 0.3s;
+                visibility: hidden;
+                width: 100px;
+                z-index: 1001;
+              }
 
-.new-conversation-model-start .tooltiptext::after {
-  border-color: transparent #000000 transparent transparent;
-  border-style: solid;
-  border-width: 5px;
-  content: " ";
-  left: -10px;
-  position: absolute;
-  top: 35%;
-}
+              .new-conversation-model-start .tooltiptext::after {
+                border-color: transparent #000000 transparent transparent;
+                border-style: solid;
+                border-width: 5px;
+                content: " ";
+                left: -10px;
+                position: absolute;
+                top: 35%;
+              }
 
-.new-conversation-model-start:hover .tooltiptext {
-  opacity: 1;
-  visibility: visible;
-}
+              .new-conversation-model-start:hover .tooltiptext {
+                opacity: 1;
+                visibility: visible;
+              }
+              .none{
+                display:none;
+              }
+
+              .block{
+                display:block;
+                position:absolute;
+              }
+
+              .new-conversation-model-start.big svg{
+                transition: all 0.5s;
+              }
+              .new-conversation-model-start.big svg{
+                width:2rem;
+                transition: all 0.5s;
+              }
 
             </style>
     
@@ -143,7 +162,17 @@ class NewChat extends HTMLElement {
             </section>
             `
 
-    }
+  }
+  change(){
+    let user = this.shadow.querySelector(".new-conversation-model-name");
+    let button = this.shadow.querySelector(".new-conversation-model-icon");
+    let icon = this.shadow.querySelector(".new-conversation-model-start");
+    icon.classList.toggle("big");
+    user.classList.toggle("none");
+    button.classList.toggle("none");
+  }
+  
 }
+
 
 customElements.define('new-chat-component', NewChat);
