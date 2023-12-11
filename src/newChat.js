@@ -127,7 +127,7 @@ class NewChat extends HTMLElement {
                 position:absolute;
               }
 
-              .new-conversation-model-start.big svg{
+              .new-conversation-model-start svg{
                 transition: all 0.5s;
               }
               .new-conversation-model-start.big svg{
