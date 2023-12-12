@@ -3,6 +3,14 @@ class OptionsChat extends HTMLElement {
     constructor() {
         super()
         this.shadow = this.attachShadow({ mode: 'open' })
+        document.addEventListener('clean-chat', () => {
+            this.change();
+        });
+
+        document.addEventListener('new-chat', () => {
+            this.render();
+        });
+
     }
 
     connectedCallback() {
@@ -207,6 +215,9 @@ class OptionsChat extends HTMLElement {
             </section>
             `
 
+    }
+    change() {
+        this.shadow.innerHTML="";
     }
 }
 

@@ -3,10 +3,16 @@ class Conversation extends HTMLElement {
     constructor() {
         super()
         this.shadow = this.attachShadow({ mode: 'open' })
+        document.addEventListener('clean-chat', () => {
+            this.change();
+        });
+
+        document.addEventListener('new-chat', () => {
+            this.render();
+        });
     }
 
     connectedCallback() {
-
         this.render()
     }
 
@@ -76,6 +82,9 @@ class Conversation extends HTMLElement {
                     </section>
                 </div>
             `
+    }
+    change() {
+        this.shadow.innerHTML="";
     }
 }
 

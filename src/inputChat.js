@@ -3,10 +3,13 @@ class InputChat extends HTMLElement {
     constructor() {
         super()
         this.shadow = this.attachShadow({ mode: 'open' })
+
     }
 
     connectedCallback() {
-
+        document.addEventListener('new-chat', () => {
+            this.cleanInput();
+        });
         this.render()
     }
 
@@ -24,7 +27,11 @@ class InputChat extends HTMLElement {
                     src: url('/fonts/soehne-buch.woff2') format('woff2');
                 }
 
-
+                :host{
+                    position:fixed;
+                    top:92%;
+                    width:38.7%;
+                }
 
                 .message-input .attach-button button {
                     background-color: hsl(0, 0%, 100%, 0);
@@ -176,6 +183,22 @@ class InputChat extends HTMLElement {
             }
         })
 
+        button.addEventListener('click', (event) => {
+            event.preventDefault();
+            const area = this.shadow.querySelector("textarea");
+            area.value = "";
+            const customEvent = new CustomEvent('clean-chat', {
+
+            })
+            document.dispatchEvent(customEvent);
+        })
+
+    
+
+    }
+    cleanInput(){
+        const area = this.shadow.querySelector("textarea");
+        area.value = "";
     }
 }
 

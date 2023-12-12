@@ -161,9 +161,18 @@ class NewChat extends HTMLElement {
                 </div>
             </section>
             `
+    let button = this.shadow.querySelector(".new-conversation");
+    button.addEventListener('click', () => {
+      const nuevoEvento = new CustomEvent('new-chat');
+
+      document.dispatchEvent(nuevoEvento);
+
+    });
+
+
 
   }
-  change(){
+  change() {
     let user = this.shadow.querySelector(".new-conversation-model-name");
     let button = this.shadow.querySelector(".new-conversation-model-icon");
     let icon = this.shadow.querySelector(".new-conversation-model-start");
@@ -171,7 +180,9 @@ class NewChat extends HTMLElement {
     user.classList.toggle("none");
     button.classList.toggle("none");
   }
-  
+
+
+
 }
 
 
