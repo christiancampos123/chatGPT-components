@@ -3,9 +3,6 @@ class NewChat extends HTMLElement {
   constructor() {
     super()
     this.shadow = this.attachShadow({ mode: 'open' })
-    document.addEventListener('aside-change', (event) => {
-      this.change();
-    });
     document.addEventListener('aside-change', this.handleAsideChange.bind(this));
   }
 
@@ -173,9 +170,7 @@ class NewChat extends HTMLElement {
     let button = this.shadow.querySelector(".new-conversation");
     button.addEventListener('click', () => {
       const nuevoEvento = new CustomEvent('new-chat');
-
       document.dispatchEvent(nuevoEvento);
-
     });
   }
 }

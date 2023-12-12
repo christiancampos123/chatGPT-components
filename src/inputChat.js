@@ -6,7 +6,7 @@ class InputChat extends HTMLElement {
 
         document.addEventListener('new-chat', this.handleNewChat.bind(this));
     }
-    
+
     handleNewChat = event => {
         this.render();
     }
@@ -184,8 +184,10 @@ class InputChat extends HTMLElement {
 
                 if (event.target.value == "" || event.target.value == null) {
                     button.classList.add("dissabled");
+                    button.classList.remove("active");
                 } else {
                     button.classList.remove("dissabled");
+                    button.classList.add("active");
                 }
             }
         })
@@ -213,6 +215,8 @@ class InputChat extends HTMLElement {
             area.value = "";
             const customEvent = new CustomEvent('clean-chat');
             document.dispatchEvent(customEvent);
+            button.classList.add("dissabled");
+            button.classList.remove("active");
         })
 
     }
