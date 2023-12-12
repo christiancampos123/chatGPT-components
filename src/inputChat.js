@@ -142,11 +142,6 @@ class InputChat extends HTMLElement {
                     visibility: visible;
                 }
 
-                .send-button.dissabled {
-                    pointer-events: none;
-                    opacity: 0.5;
-                    cursor: not-allowed;
-                }
             </style>
     
             <section class="message-input">
@@ -163,7 +158,7 @@ class InputChat extends HTMLElement {
                         <textarea placeholder="Message ChatGPT..."></textarea>
                     </div>
                     <div class="send-button dissabled">
-                        <button>
+                        <button disabled=true>
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="text-white dark:text-black">
                                 <path d="M7 11L12 6L17 11M12 18V7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
                             </svg>            
@@ -183,11 +178,11 @@ class InputChat extends HTMLElement {
                 event.preventDefault();
 
                 if (event.target.value == "" || event.target.value == null) {
-                    button.classList.add("dissabled");
                     button.classList.remove("active");
+                    button.querySelector("button").disabled = true;
                 } else {
-                    button.classList.remove("dissabled");
                     button.classList.add("active");
+                    button.querySelector("button").disabled = false;
                 }
             }
         })
@@ -235,8 +230,8 @@ class InputChat extends HTMLElement {
             area.value = "";
             const customEvent = new CustomEvent('clean-chat');
             document.dispatchEvent(customEvent);
-            button.classList.add("dissabled");
             button.classList.remove("active");
+            button.querySelector("button").disabled = true;
         })
 
     }
