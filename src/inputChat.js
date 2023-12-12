@@ -27,10 +27,12 @@ class InputChat extends HTMLElement {
                     src: url('/fonts/soehne-buch.woff2') format('woff2');
                 }
 
-                :host{
-                    position:fixed;
-                    top:92%;
-                    width:38.7%;
+                .user-interaction{
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1.5rem 0;
+                width: 45%;
                 }
 
                 .message-input .attach-button button {
@@ -187,13 +189,9 @@ class InputChat extends HTMLElement {
             event.preventDefault();
             const area = this.shadow.querySelector("textarea");
             area.value = "";
-            const customEvent = new CustomEvent('clean-chat', {
-
-            })
+            const customEvent = new CustomEvent('clean-chat');
             document.dispatchEvent(customEvent);
         })
-
-    
 
     }
     cleanInput(){
