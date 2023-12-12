@@ -3,14 +3,23 @@ class NewChat extends HTMLElement {
   constructor() {
     super()
     this.shadow = this.attachShadow({ mode: 'open' })
-  }
-
-  connectedCallback() {
     document.addEventListener('aside-change', (event) => {
       this.change();
     });
+    document.addEventListener('aside-change', this.handleAsideChange.bind(this));
+  }
 
+  connectedCallback() {
     this.render()
+  }
+
+  handleAsideChange() {
+    let user = this.shadow.querySelector(".new-conversation-model-name");
+    let button = this.shadow.querySelector(".new-conversation-model-icon");
+    let icon = this.shadow.querySelector(".new-conversation-model-start");
+    icon.classList.toggle("big");
+    user.classList.toggle("none");
+    button.classList.toggle("none");
   }
 
   render() {
@@ -168,21 +177,7 @@ class NewChat extends HTMLElement {
       document.dispatchEvent(nuevoEvento);
 
     });
-
-
-
   }
-  change() {
-    let user = this.shadow.querySelector(".new-conversation-model-name");
-    let button = this.shadow.querySelector(".new-conversation-model-icon");
-    let icon = this.shadow.querySelector(".new-conversation-model-start");
-    icon.classList.toggle("big");
-    user.classList.toggle("none");
-    button.classList.toggle("none");
-  }
-
-
-
 }
 
 

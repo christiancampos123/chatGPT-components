@@ -4,12 +4,14 @@ class InputChat extends HTMLElement {
         super()
         this.shadow = this.attachShadow({ mode: 'open' })
 
+        document.addEventListener('new-chat', this.handleNewChat.bind(this));
+    }
+    
+    handleNewChat = event => {
+        this.render();
     }
 
     connectedCallback() {
-        document.addEventListener('new-chat', () => {
-            this.cleanInput();
-        });
         this.render()
     }
 
@@ -213,10 +215,6 @@ class InputChat extends HTMLElement {
             document.dispatchEvent(customEvent);
         })
 
-    }
-    cleanInput() {
-        const area = this.shadow.querySelector("textarea");
-        area.value = "";
     }
 }
 
