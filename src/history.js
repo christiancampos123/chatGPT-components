@@ -56,7 +56,8 @@ class HistoryChat extends HTMLElement {
                 }
 
                 .history-record-title{
-                margin: 0 1rem 1rem 1rem;  
+                margin: 0 1rem 1rem 1rem;
+                white-space:nowrap; 
                 }
 
                 .history-record-title h3{

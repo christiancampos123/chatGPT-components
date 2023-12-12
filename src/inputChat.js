@@ -192,21 +192,41 @@ class InputChat extends HTMLElement {
             }
         })
 
+        const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+        let konamiCodePosition = 0;
+
         textArea.addEventListener('keydown', (event) => {
+
             if (event.target.tagName === 'TEXTAREA') {
-                console.log('Tecla pulsada:', event.key);
-                console.log('Código de la tecla:', event.code);
-        
+                console.log(event.key.toLowerCase());
                 if (event.key === 'Enter' && !event.shiftKey) {
                     event.preventDefault();
-                    
                     button.click();
-                    
                     event.target.value = "";
+                }
+
+                // Verificar el código Konami
+                if (event.key === konamiCode[konamiCodePosition]) {
+                    console.log("entro")
+                    konamiCodePosition++;
+
+                    // Si se ha ingresado correctamente el código Konami
+                    if (konamiCodePosition === konamiCode.length) {
+                        activateKonamiCode();
+                        konamiCodePosition = 0; // Reiniciar la posición del código Konami
+                    }
+                } else {
+                    konamiCodePosition = 0; // Reiniciar si se ingresa una tecla incorrecta
                 }
             }
         });
-        
+
+        function activateKonamiCode() {
+            // Acción especial cuando se ingresa correctamente el código Konami
+            window.open("https://github.com/christiancampos123", "_blank");
+            // Puedes realizar la acción especial que desees aquí
+        }
+
 
 
         button.addEventListener('click', (event) => {

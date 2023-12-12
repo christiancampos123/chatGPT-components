@@ -134,11 +134,13 @@ class NewChat extends HTMLElement {
               }
 
               .new-conversation-model-start svg{
+                transition-delay: 0.3s;
                 transition: all 0.5s;
               }
               .new-conversation-model-start.big svg{
+                transition-delay: 0.3s;
                 width:2rem;
-                transition: all 0.5s;
+
               }
 
             </style>

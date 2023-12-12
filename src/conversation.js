@@ -10,6 +10,8 @@ class Conversation extends HTMLElement {
         document.addEventListener('new-chat', () => {
             this.render();
         });
+
+
     }
 
     connectedCallback() {
@@ -84,8 +86,9 @@ class Conversation extends HTMLElement {
             `
     }
     change() {
-        this.shadow.innerHTML="";
+        this.shadow.innerHTML = "";
     }
+
 }
 
 customElements.define('conversation-component', Conversation);
