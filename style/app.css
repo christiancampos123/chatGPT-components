@@ -22,7 +22,10 @@ main{
 }
 
 .user-interaction{
+  position:fixed;
   display: flex;
+  justify-content: right;
+  bottom: 0;
   flex-direction: column;
   gap: 1rem;
   padding: 1.5rem 0;

@@ -27,12 +27,14 @@ class InputChat extends HTMLElement {
                     src: url('/fonts/soehne-buch.woff2') format('woff2');
                 }
 
+
+
                 .user-interaction{
-                display: flex;
-                flex-direction: column;
-                gap: 1rem;
-                padding: 1.5rem 0;
-                width: 45%;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 1rem;
+                    padding: 1.5rem 0;
+                    width: 45%;
                 }
 
                 .message-input .attach-button button {
@@ -174,8 +176,9 @@ class InputChat extends HTMLElement {
         let button = this.shadow.querySelector(".send-button");
 
         textArea.addEventListener('input', (event) => {
-            if (event.target.tagName === 'TEXTAREA') {
 
+            if (event.target.tagName === 'TEXTAREA') {
+                event.preventDefault();
 
                 if (event.target.value == "" || event.target.value == null) {
                     button.classList.add("dissabled");
@@ -184,6 +187,23 @@ class InputChat extends HTMLElement {
                 }
             }
         })
+
+        textArea.addEventListener('keydown', (event) => {
+            if (event.target.tagName === 'TEXTAREA') {
+                console.log('Tecla pulsada:', event.key);
+                console.log('Código de la tecla:', event.code);
+        
+                if (event.key === 'Enter' && !event.shiftKey) {
+                    event.preventDefault();
+                    
+                    button.click();
+                    
+                    event.target.value = "";
+                }
+            }
+        });
+        
+
 
         button.addEventListener('click', (event) => {
             event.preventDefault();
@@ -194,7 +214,7 @@ class InputChat extends HTMLElement {
         })
 
     }
-    cleanInput(){
+    cleanInput() {
         const area = this.shadow.querySelector("textarea");
         area.value = "";
     }

@@ -103,6 +103,8 @@ class Aside extends HTMLElement {
             document.dispatchEvent(customEvent);
         });
 
+        
+
         //   userSlot.classList.add("none");
         //   aside.classList.add("disabled");
     }
