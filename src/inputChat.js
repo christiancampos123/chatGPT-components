@@ -227,6 +227,14 @@ class InputChat extends HTMLElement {
         button.addEventListener('click', (event) => {
             event.preventDefault();
             const area = this.shadow.querySelector("textarea");
+            let myChatText = area.value;
+            const customEventChat = new CustomEvent('chat-value', {
+                detail: {
+                    chatText:myChatText
+                },
+            });
+            document.dispatchEvent(customEventChat);
+            
             area.value = "";
             const customEvent = new CustomEvent('clean-chat');
             document.dispatchEvent(customEvent);

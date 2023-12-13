@@ -11,6 +11,12 @@ class Conversation extends HTMLElement {
             this.render();
         });
 
+        document.addEventListener('chat-value', (event) => {
+            // alert(event.detail.chatText);
+            this.change();
+            this.createMessages(event.detail.chatText);
+        });
+
 
     }
 
@@ -86,9 +92,107 @@ class Conversation extends HTMLElement {
             `
     }
     change() {
-        this.shadow.innerHTML = "";
-    }
 
+        /*html*/
+        this.shadow.innerHTML = `
+        <style>
+        .chat{
+            padding-top:4rem;
+            width:40vw;
+            display:flex;
+        }
+        .user{
+            display:flex;
+            gap:2rem;
+        }
+        .user-logo{
+            align-items: center;
+            border-radius: 50%;
+            display: flex;
+            height: 2rem;
+            justify-content: center;
+            overflow: hidden;
+            width: 2rem;
+            }
+
+            .user-logo img{
+            width: 100%;
+            }
+
+            .user-name{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+
+            .user-name.h3{
+                color:black;
+            }
+
+            .user-name{
+            color: hsl(0, 0%, 100%);
+            font-family: 'SoehneBuch', sans-serif;
+            font-size: 0.9rem;
+            margin: 0;
+            overflow: hidden;
+            white-space: nowrap;
+            }
+
+            .user-name h3 {
+                font-family: 'SoehneBuch', sans-serif;
+                font-size: 0.9rem;
+                margin: 0;
+                overflow: hidden;
+                white-space: nowrap;
+            }
+        
+        </style>
+
+
+        `
+    }
+    createMessages(text) {
+        // Crear elementos
+        const chatDiv = document.createElement('div');
+        chatDiv.className = 'chat';
+
+        const userSection = document.createElement('section');
+        userSection.className = 'user';
+
+        const userLogoDiv = document.createElement('div');
+        userLogoDiv.className = 'user-logo';
+        const userLogoImg = document.createElement('img');
+        userLogoImg.src = 'images/user-avatar.png';
+        userLogoImg.alt = 'avatar de usuario';
+        userLogoDiv.appendChild(userLogoImg);
+
+        const userNameDiv = document.createElement('div');
+        userNameDiv.className = 'user-name';
+        const userNameH3 = document.createElement('h3');
+        userNameH3.textContent = text;
+        userNameDiv.appendChild(userNameH3);
+
+        // Construir la estructura del DOM
+        userSection.appendChild(userLogoDiv);
+        userSection.appendChild(userNameDiv);
+        chatDiv.appendChild(userSection);
+
+        
+
+        // Agregar el nuevo elemento al documento
+        document.body.appendChild(chatDiv);
+    }
 }
 
 customElements.define('conversation-component', Conversation);
+
+{/* <div class = "chat">
+<section class="user">
+    <div class="user-logo">
+        <img src="images/user-avatar.png" alt="avatar de usuario">
+    </div>
+    <div class="user-name">
+        <h3> herlloo</h3>
+    </div>
+</section>
+</div> */}
