@@ -83,9 +83,7 @@ class NewChat extends HTMLElement {
                 position: relative;
               }
 
-              .new-conversation-model-start svg{
-                width: 1rem;
-              }
+
 
               .new-conversation-model-start svg path{
                 fill: grey;
@@ -136,11 +134,11 @@ class NewChat extends HTMLElement {
               .new-conversation-model-start svg{
                 transition-delay: 0.3s;
                 transition: all 0.5s;
+                width:1rem;
               }
               .new-conversation-model-start.big svg{
                 transition-delay: 0.3s;
                 width:2rem;
-
               }
 
             </style>

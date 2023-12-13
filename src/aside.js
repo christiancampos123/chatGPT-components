@@ -16,13 +16,14 @@ class Aside extends HTMLElement {
         this.shadow.innerHTML =
       /*html*/`
       <style>
-        .aside{
-            background-color: hsl(0, 0%, 0%);
-            max-width: 235px;
-            min-width: 235px;
-            height:100%;
-            transition: all 0.5s;
-        }
+        .aside {
+    background-color: hsl(0, 0%, 0%);
+    max-width: 235px;
+    min-width: 235px;
+    height: 100%;
+    transition: all 0.5s;
+    position: relative; /* Añadido para permitir posicionamiento absoluto interno */
+}
 
         .aside.disabled{
             max-width: 0px;

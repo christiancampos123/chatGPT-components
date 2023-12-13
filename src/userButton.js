@@ -25,13 +25,17 @@ class UserButton extends HTMLElement {
                 }
 
 
-                .user{
-                bottom: 0;
-                cursor: pointer;
-                display: flex;
-                gap: 0.5rem;
-                padding: 1rem;
-                position: absolute;
+                .user {
+                    box-sizing: border-box;
+                    background-color: black;
+                    overflow:hidden;
+                    bottom: 0;
+                    cursor: pointer;
+                    display: flex;
+                    gap: 0.5rem;
+                    padding: 1rem;
+                    position: absolute;
+                    width: 100%; /* Ancho del 100% con respecto al contenedor padre */
                 }
 
                 .user-logo{
@@ -70,15 +74,16 @@ class UserButton extends HTMLElement {
                 padding: 1.5rem 0;
                 width: 45%;
                 }
+
             </style>
     
             <section class="user">
-            <div class="user-logo">
-                <img src="images/user-avatar.png" alt="avatar de usuario">
-            </div>
-            <div class="user-name">
-                <h3>Carlos Seda</h3>
-            </div>
+                <div class="user-logo">
+                    <img src="images/user-avatar.png" alt="avatar de usuario">
+                </div>
+                <div class="user-name">
+                    <h3>Christian Campos</h3>
+                </div>
             </section>
             `
 
