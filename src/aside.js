@@ -66,6 +66,7 @@ class Aside extends HTMLElement {
             border: 1px solid grey;
             border-width: 2px 2px 0 0;
             transform: rotate(225deg);
+
             
         }
 
