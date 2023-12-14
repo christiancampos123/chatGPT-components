@@ -348,12 +348,8 @@ class InputChat extends HTMLElement {
         button.classList.remove("hide");
         let buttonStop = this.shadow.querySelector(".stop-button");
         buttonStop.classList.add("hide");
-        button.querySelector("button").disabled = false;
-
+        
     }
-
-    
-
 
 }
 
