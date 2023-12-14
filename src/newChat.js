@@ -11,12 +11,16 @@ class NewChat extends HTMLElement {
   }
 
   handleAsideChange() {
+    let parent = this.shadow.querySelector(".new-conversation-model-name").parentNode;
+    console.log(parent);
     let user = this.shadow.querySelector(".new-conversation-model-name");
     let button = this.shadow.querySelector(".new-conversation-model-icon");
     let icon = this.shadow.querySelector(".new-conversation-model-start");
     icon.classList.toggle("big");
     user.classList.toggle("none");
     button.classList.toggle("none");
+    parent.classList.toggle("new-conversation");
+    parent.classList.toggle("new-conversation-basic");
   }
 
   render() {
@@ -45,9 +49,21 @@ class NewChat extends HTMLElement {
                 padding: 0.3rem;
               }
 
+              .new-conversation-basic{
+                border: 1px solid hsla(210, 3%, 13%, 0);
+                border-radius: 0.3rem;
+                display: flex;
+                gap: 0.5rem;
+                padding: 0.3rem;
+              }
+
               .new-conversation:hover{
                 background-color: hsl(220, 4%, 13%);
                 border: 1px solid hsla(210, 3%, 13%, 0.50);
+                cursor: pointer;
+              }
+
+              .new-conversation-basic:hover{
                 cursor: pointer;
               }
 
