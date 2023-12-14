@@ -5,10 +5,18 @@ class InputChat extends HTMLElement {
         this.shadow = this.attachShadow({ mode: 'open' })
 
         document.addEventListener('new-chat', this.handleNewChat.bind(this));
+        document.addEventListener('show-stop', this.handleShowStop.bind(this));
+        document.addEventListener('hide-stop', this.handleHideStop.bind(this));
     }
 
     handleNewChat = event => {
         this.render();
+    }
+    handleShowStop = event => {
+        this.showButtonStop();
+    }
+    handleHideStop = event => {
+        this.hideButtonStop();
     }
 
     connectedCallback() {
@@ -109,6 +117,33 @@ class InputChat extends HTMLElement {
                     color: hsl(0, 0%, 0%);
                 }
 
+                
+
+
+
+                .message-input .stop-button button {
+                    align-items: center;
+                    background-color: hsl(235, 7%, 31%);
+                    border: none;
+                    border-radius: 0.5rem;
+                    display: flex;
+                    padding: 0.1rem 0.2rem;
+                }
+
+                .message-input .stop-button svg {
+                    color: hsl(0, 0%, 0%, 0.3);
+                    width: 1.3rem;
+                }
+
+                .message-input .stop-button.active button {
+                    background-color: rgb(255, 255, 255);
+                    cursor: pointer;
+                }
+
+                .message-input .stop-button.active svg {
+                    color: hsl(0, 0%, 0%);
+                }
+
                 .send-button .tooltiptext {
                     background-color: black;
                     border-radius: 0.5rem;
@@ -142,6 +177,43 @@ class InputChat extends HTMLElement {
                     visibility: visible;
                 }
 
+                .stop-button .tooltiptext {
+                    background-color: black;
+                    border-radius: 0.5rem;
+                    color: #fff;
+                    font-family: 'SoehneBuch', sans-serif;
+                    font-size: 0.8rem;
+                    margin-top: -5rem;
+                    margin-left: -3rem;
+                    opacity: 0;
+                    padding: 0.5rem 0;
+                    pointer-events: none;
+                    position: absolute;
+                    text-align: center;
+                    transition: opacity 0.3s;
+                    width: 120px;
+                    z-index: 1001;
+                }
+
+                .stop-button .tooltiptext::after {
+                    border-width: 5px;
+                    border-style: solid;
+                    border-color: rgb(0, 0, 0) transparent transparent transparent;
+                    content: "";
+                    left: 45%;
+                    position: absolute;
+                    top: 100%;
+                }
+
+                .stop-button:hover .tooltiptext {
+                    opacity: 1;
+                    visibility: visible;
+                }
+
+                .hide{
+                    display:none;
+                }
+
             </style>
     
             <section class="message-input">
@@ -165,6 +237,12 @@ class InputChat extends HTMLElement {
                             <span class="tooltiptext">Enviar mensaje</span>                  
                         </button>
                     </div>
+                    <div class="stop-button hide">
+                    <button>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>stop-circle-outline</title><path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4M9,9V15H15V9" /></svg>          
+                        <span class="tooltiptext">Parar</span>                  
+                    </button>
+                </div>
                 </form>
             </section>
             `
@@ -228,27 +306,55 @@ class InputChat extends HTMLElement {
 
         button.addEventListener('click', (event) => {
             event.preventDefault();
-            if (borrar) {
-                const customEvent = new CustomEvent('clean-chat');
-                document.dispatchEvent(customEvent);
-                borrar = false;
+            let buttonStop = this.shadow.querySelector(".stop-button");
+            while (buttonStop.classList.contains("hide")) {
+                if (borrar) {
+                    const customEvent = new CustomEvent('clean-chat');
+                    document.dispatchEvent(customEvent);
+                    borrar = false;
+                }
+                button.classList.remove("active");
+                button.querySelector("button").disabled = true;
+                const area = this.shadow.querySelector("textarea");
+                let myChatText = area.value;
+                const customEventChat = new CustomEvent('chat-value', {
+                    detail: {
+                        chatText: myChatText
+                    },
+                });
+                document.dispatchEvent(customEventChat);
+                area.value = "";
             }
-            button.classList.remove("active");
-            button.querySelector("button").disabled = true;
-            const area = this.shadow.querySelector("textarea");
-            let myChatText = area.value;
-            const customEventChat = new CustomEvent('chat-value', {
-                detail: {
-                    chatText: myChatText
-                },
-            });
-            document.dispatchEvent(customEventChat);
+        })
+        let buttonStop = this.shadow.querySelector(".stop-button");
+        buttonStop.addEventListener('click', (event) => {
+            event.preventDefault();
+            this.hideButtonStop();
 
-
-            area.value = "";
         })
 
     }
+
+    showButtonStop() {
+        let button = this.shadow.querySelector(".send-button");
+        button.classList.add("hide");
+        let buttonStop = this.shadow.querySelector(".stop-button");
+        buttonStop.classList.remove("hide");
+        button.querySelector("button").disabled = true;
+    }
+
+    hideButtonStop() {
+        let button = this.shadow.querySelector(".send-button");
+        button.classList.remove("hide");
+        let buttonStop = this.shadow.querySelector(".stop-button");
+        buttonStop.classList.add("hide");
+        button.querySelector("button").disabled = false;
+
+    }
+
+    
+
+
 }
 
 customElements.define('input-chat-component', InputChat);
