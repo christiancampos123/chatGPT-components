@@ -5,4 +5,4 @@ import './newChat.js';
 import './history.js';
 import './userButton.js';
 import './aside.js';
-import './chat.js';
+// import './chat.js';

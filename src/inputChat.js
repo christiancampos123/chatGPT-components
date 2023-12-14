@@ -183,6 +183,7 @@ class InputChat extends HTMLElement {
                 } else {
                     button.classList.add("active");
                     button.querySelector("button").disabled = false;
+
                 }
             }
         })
@@ -193,16 +194,17 @@ class InputChat extends HTMLElement {
         textArea.addEventListener('keydown', (event) => {
 
             if (event.target.tagName === 'TEXTAREA') {
-                console.log(event.key.toLowerCase());
                 if (event.key === 'Enter' && !event.shiftKey) {
                     event.preventDefault();
-                    button.click();
-                    event.target.value = "";
+                    if (button.classList.contains('active')) {
+                        button.click();
+                    }
+
+                    event.target.value = null;
                 }
 
                 // Verificar el código Konami
                 if (event.key === konamiCode[konamiCodePosition]) {
-                    console.log("entro")
                     konamiCodePosition++;
 
                     // Si se ha ingresado correctamente el código Konami
@@ -221,25 +223,29 @@ class InputChat extends HTMLElement {
             window.open("https://github.com/christiancampos123", "_blank");
             // Puedes realizar la acción especial que desees aquí
         }
-
+        let borrar = true;
 
 
         button.addEventListener('click', (event) => {
             event.preventDefault();
+            if (borrar) {
+                const customEvent = new CustomEvent('clean-chat');
+                document.dispatchEvent(customEvent);
+                borrar = false;
+            }
+            button.classList.remove("active");
+            button.querySelector("button").disabled = true;
             const area = this.shadow.querySelector("textarea");
             let myChatText = area.value;
             const customEventChat = new CustomEvent('chat-value', {
                 detail: {
-                    chatText:myChatText
+                    chatText: myChatText
                 },
             });
             document.dispatchEvent(customEventChat);
-            
+
+
             area.value = "";
-            const customEvent = new CustomEvent('clean-chat');
-            document.dispatchEvent(customEvent);
-            button.classList.remove("active");
-            button.querySelector("button").disabled = true;
         })
 
     }

@@ -38,6 +38,7 @@ class Chat extends HTMLElement {
                         width:40vw;
                         display:flex;
                         flex-direction:column;
+                        background-color:grey;
                     }
                     .user{
                         display:flex;
