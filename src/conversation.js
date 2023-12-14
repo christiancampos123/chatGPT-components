@@ -3,6 +3,16 @@ class Conversation extends HTMLElement {
     constructor() {
         super()
         this.shadow = this.attachShadow({ mode: 'open' })
+        // this.faqs = [
+        //     {
+        //     "question":"hola?",
+        //     "answer" : "adios"
+        //     },
+        //     {
+        //     "question":"holaaaaa?",
+        //     "answer" : "adios"
+        //     }
+        //     ]
         document.addEventListener('clean-chat', () => {
             this.change();
         });
@@ -110,7 +120,7 @@ class Conversation extends HTMLElement {
                     }
 
                     .chat{
-                        gap:0.5rem;
+                        gap:1.5rem;
                         position:fixed;
                         top:10%;
                         left:30%;
@@ -233,7 +243,37 @@ class Conversation extends HTMLElement {
             }
           }, 50); 
 
+          this.createMessagesNew();
+
     }
+
+    // createMessagesNew(text) {
+        
+    //     this.faqs.forEach(faq => {
+    //         const chatDiv = this.shadow.querySelector(".chat");
+    //         const userSection = document.createElement('section');
+    //         userSection.className = 'user';
+    
+    //         const userLogoDiv = document.createElement('div');
+    //         userLogoDiv.className = 'user-logo';
+    //         const userLogoImg = document.createElement('img');
+    //         userLogoImg.src = 'images/user-avatar.png';
+    //         userLogoImg.alt = 'avatar de usuario';
+    //         userLogoDiv.appendChild(userLogoImg);
+    
+    //         const userNameDiv = document.createElement('div');
+    //         userNameDiv.className = 'user-name';
+    //         const userNameH3 = document.createElement('h3');
+    //         userNameH3.textContent = faq.question;
+    //         userNameDiv.appendChild(userNameH3);
+    
+    //         // Construir la estructura del DOM
+    //         userSection.appendChild(userLogoDiv);
+    //         userSection.appendChild(userNameDiv);
+    //         chatDiv.appendChild(userSection);
+    //     })
+    // }
+
 }
 
 
