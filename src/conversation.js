@@ -123,6 +123,7 @@ class Conversation extends HTMLElement {
                     font-family: 'SoehneBuch', sans-serif;
                     font-size: 0.9rem;
                     margin: 0;
+                    overflow: auto;
                     }
 
                     .user-name h3 {
@@ -130,6 +131,20 @@ class Conversation extends HTMLElement {
                         font-size: 0.9rem;
                         margin: 0;
                     }
+
+                    .user-name::-webkit-scrollbar {
+                        height: 5px;
+                    }
+                    
+                    .user-name::-webkit-scrollbar-thumb {
+                        background-color: hsl(0, 0%, 53%);
+                        border-radius: 1rem;
+                    }
+                    
+                    .user-name::-webkit-scrollbar-thumb:hover {
+                        background-color: hsl(0, 0%, 78%);
+                    }
+
                     
                 </style>
                 <div class="conversation">
