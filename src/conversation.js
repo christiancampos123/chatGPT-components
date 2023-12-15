@@ -284,13 +284,13 @@ class Conversation extends HTMLElement {
 
 
 
-        var intervalo = setInterval(function () {
+        const intervalo = setInterval( () => {
             // Agrega el siguiente carácter al div
             userNameH3.innerHTML += texto.charAt(index);
             chatDiv.scrollTop = chatDiv.scrollHeight;
 
             // Incrementa el índice
-            index++;
+            index ++;
 
             // Si hemos alcanzado el final del texto, detén el intervalo
             if (index === texto.length) {
@@ -302,7 +302,7 @@ class Conversation extends HTMLElement {
 
             }
             
-        }, 1);
+        }, 2);
 
         //   this.createMessagesNew();
 
