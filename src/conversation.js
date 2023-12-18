@@ -3,6 +3,7 @@ class Conversation extends HTMLElement {
     constructor() {
         super()
         this.shadow = this.attachShadow({ mode: 'open' })
+        let scroller = true;
         // this.faqs = [
         //     {
         //     "question":"hola?",
@@ -162,7 +163,8 @@ class Conversation extends HTMLElement {
     
     handleChatValue = event => {
         this.createMessages(event.detail.chatText);
-        this.createMessagesGPT();
+        let scroller = true;
+        this.createMessagesGPT(scroller);
     }
 
     connectedCallback() {
@@ -235,7 +237,9 @@ class Conversation extends HTMLElement {
                     </section>
                 </div>
             `
+            
     }
+    
 
 
     createMessages(text) {
@@ -262,10 +266,12 @@ class Conversation extends HTMLElement {
         userSection.appendChild(userLogoDiv);
         userSection.appendChild(userNameDiv);
         chatDiv.appendChild(userSection);
-        chatDiv.scrollTop = chatDiv.scrollHeight;
+        // chatDiv.scrollTop = chatDiv.scrollHeight;
     }
 
-    createMessagesGPT() {
+    
+
+    createMessagesGPT(scroller) {
         // console.log("not yet");
         const customEvent = new CustomEvent('show-stop', {
 
@@ -297,13 +303,29 @@ class Conversation extends HTMLElement {
         let index = 0;
         const texto = "No se que desi, pero mira una tortuga en bisiNo se que desi, pero mira una tortuga en bisiNo se que desi, pero mira una tortuga en bisiNo se que desi, pero mira una tortuga en bisiNo se que desi, pero mira una tortuga en bisiNo se que desi, pero mira una tortuga en bisiNo se que desi, pero mira una tortuga en bisiNo se que desi, pero mira una tortuga en bisiNo se que desi, pero mira una tortuga en bisiNo se que desi, pero mira una tortuga en bisiNo se que desi, pero mira una tortuga en bisiNo se que desi, pero mira una tortuga en bisiNo se que desi, pero mira una tortuga en bisiNo se que desi, pero mira una tortuga en bisiNo se que desi, pero mira una tortuga en bisiNo se que desi, pero mira una tortuga en bisiNo se que desi, pero mira una tortuga en bisiNo se que desi, pero mira una tortuga en bisiNo se que desi, pero mira una tortuga en bisiNo se que desi, pero mira una tortuga en bisiNo se que desi, pero mira una tortuga en bisiNo se que desi, pero mira una tortuga en bisiNo se que desi, pero mira una tortuga en bisiNo se que desi, pero mira una tortuga en bisiNo se que desi, pero mira una tortuga en bisiNo se que desi, pero mira una tortuga en bisiNo se que desi, pero mira una tortuga en bisiNo se que desi, pero mira una tortuga en bisiNo se que desi, pero mira una tortuga en bisiNo se que desi, pero mira una tortuga en bisiNo se que desi, pero mira una tortuga en bisiNo se que desi, pero mira una tortuga en bisiNo se que desi, pero mira una tortuga en bisiNo se que desi, pero mira una tortuga en bisiNo se que desi, pero mira una tortuga en bisiNo se que desi, pero mira una tortuga en bisiNo se que desi, pero mira una tortuga en bisiNo se que desi, pero mira una tortuga en bisiNo se que desi, pero mira una tortuga en bisiNo se que desi, pero mira una tortuga en bisiNo se que desi, pero mira una tortuga en bisiNo se que desi, pero mira una tortuga en bisiNo se que desi, pero mira una tortuga en bisiNo se que desi, pero mira una tortuga en bisiNo se que desi, pero mira una tortuga en bisiNo se que desi, pero mira una tortuga en bisiNo se que desi, pero mira una tortuga en bisiNo se que desi, pero mira una tortuga en bisiNo se que desi, pero mira una tortuga en bisiNo se que desi, pero mira una tortuga en bisiNo se que desi, pero mira una tortuga en bisiNo se que desi";
 
+        
+        
 
+        // Agregar evento de escucha para el desplazamiento
+        chatDiv.addEventListener('scroll', () => {
+            console.log("try hello");
+            // Verificar si el usuario está haciendo scroll hacia arriba
+            if (chatDiv.scrollTop < chatDiv.scrollHeight - chatDiv.clientHeight) {
+                scroller = false;
+                console.log("corta")
+            } else {
+                scroller =true;
+            }
+            console.log(scroller);
+        });
 
         const intervalo = setInterval( () => {
             // Agrega el siguiente carácter al div
             userNameH3.innerHTML += texto.charAt(index);
-            chatDiv.scrollTop = chatDiv.scrollHeight;
-
+            if(scroller == true){
+                chatDiv.scrollTop = chatDiv.scrollHeight;
+            }
+             
             // Incrementa el índice
             index ++;
 
