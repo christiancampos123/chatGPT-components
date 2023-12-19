@@ -308,7 +308,6 @@ class Conversation extends HTMLElement {
 
         // Agregar evento de escucha para el desplazamiento
         chatDiv.addEventListener('scroll', () => {
-            console.log("try hello");
             // Verificar si el usuario está haciendo scroll hacia arriba
             if (chatDiv.scrollTop < chatDiv.scrollHeight - chatDiv.clientHeight) {
                 scroller = false;
