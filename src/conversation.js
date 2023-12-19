@@ -312,7 +312,6 @@ class Conversation extends HTMLElement {
             // Verificar si el usuario está haciendo scroll hacia arriba
             if (chatDiv.scrollTop < chatDiv.scrollHeight - chatDiv.clientHeight) {
                 scroller = false;
-                console.log("corta")
             } else {
                 scroller =true;
             }

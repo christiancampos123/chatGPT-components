@@ -9,14 +9,35 @@ class InputChat extends HTMLElement {
         document.addEventListener('hide-stop', this.handleHideStop.bind(this));
     }
 
+    static get observedAttributes () {
+        return ['state']
+    }
+
+    attributeChangedCallback(name, oldValue, newValue) {
+
+        if (name === 'state') {
+            if(newValue == "stop"){
+                this.showButtonStop();
+            } else {
+                this.hideButtonStop();
+            }
+            
+        }
+    }
+
     handleNewChat = event => {
         this.render();
     }
+
     handleShowStop = event => {
-        this.showButtonStop();
+        // const inputBar = this.shadow.querySelector(".message-input");
+        this.setAttribute('state','stop');
+        // this.showButtonStop();
     }
     handleHideStop = event => {
-        this.hideButtonStop();
+        // const inputBar = this.shadow.querySelector(".message-input");
+        this.setAttribute('state','play');
+        // this.hideButtonStop();
     }
 
     connectedCallback() {
@@ -348,7 +369,7 @@ class InputChat extends HTMLElement {
         button.classList.remove("hide");
         let buttonStop = this.shadow.querySelector(".stop-button");
         buttonStop.classList.add("hide");
-        
+
     }
 
 }
