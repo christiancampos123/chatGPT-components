@@ -37,9 +37,9 @@ module.exports = {
         type: Sequelize.DATE
       }
     })
-    .then(() => queryInterface.addIndex('prompts', ['chatId'], {
-      name: 'prompt_chatId_fk'
-    }))
+      .then(() => queryInterface.addIndex('prompts', ['chatId'], {
+        name: 'prompt_chatId_fk'
+      }))
   },
 
   down: async (queryInterface, Sequelize) => {

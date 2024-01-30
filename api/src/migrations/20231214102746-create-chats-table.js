@@ -45,12 +45,12 @@ module.exports = {
         type: Sequelize.DATE
       }
     })
-    .then(() => queryInterface.addIndex('chats', ['assistantId'], {
-      name: 'chats_assistantId_fk'
-    }))
-    .then(() => queryInterface.addIndex('chats', ['customerId'], {
-      name: 'chats_customerId_fk'
-    }))
+      .then(() => queryInterface.addIndex('chats', ['assistantId'], {
+        name: 'chats_assistantId_fk'
+      }))
+      .then(() => queryInterface.addIndex('chats', ['customerId'], {
+        name: 'chats_customerId_fk'
+      }))
   },
 
   down: async (queryInterface, Sequelize) => {
